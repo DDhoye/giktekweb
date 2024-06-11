@@ -1,0 +1,32 @@
+import { Component } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+  email: string = '';
+  password: string = '';
+
+  constructor(private authService: AuthService, private router: Router) { }
+
+  login() {
+    this.authService.login(this.email, this.password).subscribe(
+  isSuccessful => {
+    if (isSuccessful) {
+      console.log('Login successful');
+      this.router.navigate(['/page']);  // navigate to home component
+    } else {
+      console.log('Login failed');
+      // Handle failed login
+    }
+  },
+  error => {
+    console.error('An error occurred:', error);
+  }
+);
+  }
+}
