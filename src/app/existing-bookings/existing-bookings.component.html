@@ -1,0 +1,133 @@
+<div class="background-container">
+  <div class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">
+      <img src="/images/gikteklogomod2.png" alt=" Giktek Logo" />
+    </a>
+  </div>
+  <div class="container">
+    <h4>Existing Bookings</h4>
+    <div *ngFor="let booking of bookings" class="card mb-3">
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title">Appointment with {{ booking.department }}</h5>
+        <p class="card-text">Date: {{ booking.date | date }}</p>
+        <p class="card-text">Time: {{ booking.time }}</p>
+        <div class="mt-auto d-flex justify-content-end">
+          <button
+            class="btn btn-primary me-2"
+            (click)="openRescheduleModal(booking)"
+          >
+            Reschedule
+          </button>
+          <button class="btn btn-danger" (click)="openCancelModal(booking)">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reschedule Modal -->
+    <div
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      [ngClass]="{ 'show d-block': isRescheduleModalOpen }"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Reschedule Appointment</h5>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closeRescheduleModal()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form
+              [formGroup]="rescheduleForm"
+              (ngSubmit)="onRescheduleSubmit()"
+            >
+              <div class="mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Choose a new date</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="appointmentDate"
+                    (dateChange)="onDateChange($event)"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <!-- AVAILABLE TIME SLOTS - Display only if appointment date is selected and there are available time slots -->
+              <div
+                class="col-md-6"
+                *ngIf="
+                  rescheduleForm.get('appointmentDate')?.value &&
+                  availableTimeSlots.length > 0
+                "
+              >
+                <label for="timeSlots" class="form-label"
+                  >Available Time Slots</label
+                >
+                <div>
+                  <button
+                    *ngFor="let timeSlot of availableTimeSlots"
+                    class="btn btn-success m-1"
+                    (click)="selectTimeSlot(timeSlot)"
+                  >
+                    {{ timeSlot }}
+                  </button>
+                </div>
+              </div>
+              <button mat-raised-button color="primary" mt-2 type="submit">
+                Reschedule
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancel Modal -->
+    <div
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      [ngClass]="{ 'show d-block': isCancelModalOpen }"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Cancel Appointment</h5>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closeCancelModal()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you want to cancel this appointment?</p>
+
+            <div class="mt-auto d-flex justify-content-end">
+              <button
+                class="btn btn-danger me-2"
+                (click)="confirmCancelAppointment()"
+              >
+                Confirm Cancel
+              </button>
+              <button class="btn btn-secondary" (click)="closeCancelModal()">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

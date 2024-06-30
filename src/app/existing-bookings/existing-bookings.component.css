@@ -1,0 +1,67 @@
+:host{
+    
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  
+  }
+  
+  .background-container {
+    
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+      ),
+      url('pexels-shvetsa-4482900.jpg') no-repeat center center/cover;
+   
+    }
+
+    .navbar-brand{
+  
+      margin: 20px 22px;
+    }
+  .container{
+    position: relative;
+    margin: 20px auto; 
+    
+    
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    width: 100%;
+  
+      
+  }
+
+  .card {
+    margin-bottom: 15px;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .container {
+      max-width: 90%; /* Increases width for smaller screens */
+    }
+  
+    .modal-dialog {
+      max-width: 90%; /* Ensure the modal is responsive */
+      margin: 10px auto; /* Add margin for better spacing */
+    }
+  }
+  
+  /* Media query for very small screens */
+  @media (max-width: 480px) {
+    .container {
+      max-width: 95%; /* Further increases width for very small screens */
+    }
+  
+    .modal-dialog {
+      max-width: 95%; /* Ensure the modal is more responsive */
+      margin: 10px auto; /* Add margin for better spacing */
+    }
+  }
+  

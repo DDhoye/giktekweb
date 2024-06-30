@@ -1,0 +1,31 @@
+<div class="background-container">
+  <div class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="index.html">
+      <img src="/images/gikteklogomod2.png" alt=" Giktek Logo" />
+    </a>
+  </div>
+
+  <div class="container d-flex justify-content-center">
+    <div class="row mt-4">
+      <h3 style="color: #fff">Select an institution:</h3>
+      <div class="col-md-6 mt-4 mb-4" *ngFor="let bank of banks">
+        <div class="card shadow-sm">
+          <img
+            src="{{ bank.image }}"
+            class="card-img-top"
+            alt="{{ bank.name }} logo"
+          />
+          <div class="card-body">
+            <p class="card-text">{{ bank.details }}</p>
+            <button
+              (click)="bookAppointment(bank.id, bank.name)"
+              class="btn btn-primary"
+            >
+              Book Appointment
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

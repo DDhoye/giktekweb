@@ -1,0 +1,55 @@
+:host{
+  
+  margin: 0;
+  padding: 0;
+  overflow: hidden
+
+}
+
+.background-container {
+
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ),
+    url('pexels-shvetsa-4482900.jpg') no-repeat center center/cover;
+    
+ 
+  }
+  .navbar-brand{
+  
+    margin: 20px 22px;
+  }
+  
+  .container {
+    position: relative;
+    margin: 20px auto; /* Centers the container */
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 50%;
+    width: 100%; /* Ensures the container uses full width up to max-width */
+  }
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+  .container {
+    max-width: 90%; /* Increases width for smaller screens */
+  }
+}
+
+/* Media query for very small screens */
+@media (max-width: 480px) {
+  .container {
+    max-width: 95%; /* Further increases width for very small screens */
+  }
+}
+
+
+
+
+
